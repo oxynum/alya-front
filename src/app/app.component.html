@@ -1,3 +1,17 @@
-<h1>
-  {{title}}
-</h1>
+<div class="wrap" (click)="changeText(textToSplash)">
+  <div class="alya-animation" [ngClass]="{'accelerateEffect': move, 'stayLeft': stayLeft}">
+  </div>
+  <p class="textSplah">{{textToSplash}}</p> 
+  <ul class="answers" [ngClass]="{'hide': hideAnswers}">
+    <li class="advise-card "> <a href="https://www.produitsdebourse.bnpparibas.fr/produits/details/cac-40-turbo-call-infini/frbnpp00cvm8">Turbo Call Infini CAC 40</a></li>
+    <li class="advise-card "> <a href="https://www.produitsdebourse.bnpparibas.fr/produits/details/cac-40-warrant-call/nl0012300859">WARRANT CALL CAC 40</a></li>
+  </ul>
+
+  <ul class="answers" [ngClass]="{'hide': hideAnswers2}">
+    <li class="advise-card highLight"> <a href="https://mabanque.bnpparibas/rsc/contrib/document/docs/conditions-generales/cartes/Conditions-de-fonctionnement-livret-jeune-A-weezbee.pdf">PDF:  Cartes Épargne bnp paribas</a></li>
+    <li class="advise-card "> <a href="https://www.produitsdebourse.bnpparibas.fr/produits/details/cac-40-warrant-call/nl0012300859">le plafond chez bnp paribas</a></li>
+    <li class="advise-card "> <a href="https://www.produitsdebourse.bnpparibas.fr/produits/details/cac-40-warrant-call/nl0012300859">Les comptes jeunes</a></li>
+  </ul>
+</div>
+
+<!--<button type="1" (click)="changeText1()">Listen</button><button type="2" (click)="changeText3()">Quiet</button><button type="3" (click)="changeText2()">derniers produits</button><button type="3" (click)="changeText4()">Mme Michu</button><button type="3" (click)="present()">Presente toi</button><button type="3" (click)="hello()">Bonjour</button>-->
