@@ -17,8 +17,8 @@ export class AppComponent {
   public hideAnswers = true;
   public hideAnswers2 = true;
   constructor() {
-    
-    
+
+
     this.artyom.addCommands({
       indexes: ["Présente toi", "Qui es-tu ?", "Peux-tu te présenter ?"],
       action:(i) => {
@@ -35,23 +35,23 @@ export class AppComponent {
     });
 
     this.artyom.addCommands({
-      indexes: ["Quels sont * plafond","plafond *", "* compte jeune", "plafond"], 
+      indexes: ["Quels sont * plafond","plafond *", "* compte jeune", "plafond"],
       action: (i) => {
         this.artyom.say("Parmis les trois ressources documentées, la plus pertinente se trouve dans le document suivant.");
       }
     });
 
     this.artyom.addCommands({
-      indexes: ["Derniers produits", "marchés * action"], 
+      indexes: ["Pates à la carbonara"],
       action: (i) => {
-        this.artyom.say("Depuis le 13 Mars dernier, j'ai comptabilisé 2 nouveaux produits");
-        this.artyom.say("Par ailleurs, une formation liée à ce sujet est disponible sur votre portail de formation LMS.");
+        this.artyom.say("Rudy, c'est une bonne idée, je vous fait parvenir la liste des ingrédients pour réaliser ce plat, un instant");
+        this.artyom.say("Cependant je constate que vous diner avec Chloé ce soir, mais elle est allergique au oignons, je vous propose de suivre la recette marmitton hyppoalergenique.");
       }
     });
 
     // Questions
     this.artyom.addCommands({
-      indexes: ["J'ai une question", "J'ai plusieurs questions", "J'ai * questions"], 
+      indexes: ["J'ai une question", "J'ai plusieurs questions", "J'ai * questions"],
       action: (i, wildcard) => {
         console.log(wildcard);
         this.artyom.say("Je suis à votre écoute.");
@@ -60,25 +60,25 @@ export class AppComponent {
 
     // Thanks
     this.artyom.addCommands({
-      indexes: ["Merci beaucoup", "Merci"], 
+      indexes: ["Merci beaucoup", "Merci"],
       action: (i) => {
         this.artyom.say("Tout le plaisir est pour moi.");
       }
     });
-     
+
   }
 
   ngAfterViewInit() {
 
     this.artyom.addCommands({
-      indexes: ["Ouvre BNP dans un nouvel onglet", "immobilier * BNP", "banque", "immobilier", "crédit", "placement"], 
+      indexes: ["Ouvre BNP dans un nouvel onglet", "immobilier * BNP", "banque", "immobilier", "crédit", "placement"],
       action: (i, wildcard) => {
         this.artyom.say("Je vous donne accès, au site, n'hésiter pas à me solliciter si vous avez besoin d'une assistance.");
         console.log('ooo');
         window.open("https://mabanque.bnpparibas/", "_blank");
       }
     });
-    
+
     this.artyom.initialize({
      lang: 'fr-FR',  // More languages are documented in the library (default: en-GB)
      soundex: true,  // Use the soundex algorithm to increase accuracy
@@ -86,54 +86,5 @@ export class AppComponent {
      debug: false,  //Show everything in the console
      listen: true  // Start listening when this function is triggered
    });
-  }
-
-  changeText() {
-    this.move = true;
-    this.hideAnswers2 = true;
-    this.hideAnswers = true;
-  }
-
-  
-  changeText1() {
-    this.move = true;
-    this.hideAnswers2 = true;
-    this.hideAnswers = true;
-  }
-
-  changeText2() {
-    this.move = false;
-    this.hideAnswers = false;
-    this.artyom.say("Depuis le 13 Mars dernier, j'ai comptabilisé 2 nouveaux produits");
-    this.artyom.say("Par ailleurs, une formation liée à ce sujet est disponible sur votre portail de formation LMS.");
-  }
-
-
-  changeText3() {
-    this.move = false;
-    this.hideAnswers = true;
-    this.hideAnswers2 = true;
-    
-  }
-
-  changeText4() {
-    this.move = false;
-    this.hideAnswers2 = false;
-    this.hideAnswers = true;
-    this.artyom.say("Parmis les trois ressources documentaires sur le livret cartes jeunes, la plus pertinente se trouve dans le document suivant.");
-  }
-
-  present() {
-    this.move = false;
-    this.hideAnswers2 = true;
-    this.hideAnswers = true;
-    this.artyom.say('Je m\'appel Alya, ton assistante personnelle. Ensemble nous sommes comme Batman et Robine.');
-  }
-
-  hello() {
-    this.move = false;
-    this.hideAnswers2 = true;
-    this.hideAnswers = true;
-    this.artyom.say('Bonjour.');
   }
 }
