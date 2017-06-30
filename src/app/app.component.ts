@@ -16,28 +16,63 @@ export class AppComponent {
   public stayLeft = false;
   public hideAnswers = true;
   public hideAnswers2 = true;
+
+  public init = {
+     lang: 'fr-FR',  // More languages are documented in the library (default: en-GB)
+     soundex: true,  // Use the soundex algorithm to increase accuracy
+     continuous: true,  //if you have https connection, you can activate continuous mode
+     debug: false,  //Show everything in the console
+     listen: true  // Start listening when this function is triggered
+   };
+
   constructor() {
-
-
+    
     this.artyom.addCommands({
-      indexes: ["Présente toi", "Qui es-tu ?", "Peux-tu te présenter ?"],
+      indexes: ["* présente toi", "Qui es-tu ?", "Peux-tu te présenter ?"],
       action:(i) => {
-        //this.artyom.say('Je suis Alya, ton assistante personnelle. Ensemble nous sommes comme Batman et Robine.');
-        this.artyom.say('Je m\'appel Alya, ton assistante personnelle.');
+        this.artyom.say('Je mappel Alya, ton assistante personnelle.');
+        
       }
     });
+    // http://www.marmiton.org/recettes/recherche.aspx?s=tartiflette&type=all
+
+    this.artyom.addCommands({
+      indexes: ["Je voudrais manger * ", "J'aimerais manger *"],
+      action:(i) => {
+        this.artyom.say('Très bien, je vous donne ce que j\'ai trouvé sur la tartiflette, depuis ma base de connaissance.');
+        this.artyom.say('Je vous fais parvenir la liste des ingrédients sur votre smartphone.');
+        this.artyom.say('Je constate que le casino le plus proche ferme dans moins de 30 minutes.'
+        ,{ onEnd: () => {
+            this.artyom.say('Rudy, souhaitez-vous que j\'ajoute le Chardonnay à votre liste de courses ?');
+
+            this.artyom.addCommands({
+            indexes: ["Oui", "Non"],
+            action:(i) => {
+              if(i == 0) {
+                this.artyom.say('Très bien, le Chardonnay a été ajouté à votre liste de courses.', {
+                  onEnd: () => {
+                  this.artyom.clearGarbageCollection();
+                }});
+              } else {
+                this.artyom.say('D\'accord.', {
+                  onEnd: () => {
+                  this.artyom.clearGarbageCollection();
+                }});
+              }
+            }
+          });
+        }});
+        window.open("http://www.marmiton.org/recettes/recette_tartiflette-facile_15733.aspx", "_blank");
+      }
+    });
+
 
     this.artyom.addCommands({
       indexes: ["As-tu une blague ?"],
       action:(i) => {
-        this.artyom.say('Combien font 0 + 0 ? La tête à Toto. LOL.');
-      }
-    });
-
-    this.artyom.addCommands({
-      indexes: ["Quels sont * plafond","plafond *", "* compte jeune", "plafond"],
-      action: (i) => {
-        this.artyom.say("Parmis les trois ressources documentées, la plus pertinente se trouve dans le document suivant.");
+        this.artyom.say('A quoi sert internet Explorer ?');
+        this.artyom.say('A télécharger google chrome.');
+        this.artyom.say('LOL');
       }
     });
 
@@ -60,24 +95,19 @@ export class AppComponent {
 
     // Thanks
     this.artyom.addCommands({
-      indexes: ["Merci beaucoup", "Merci"],
+      indexes: ["Merci à tous", "Merci"],
       action: (i) => {
-        this.artyom.say("Tout le plaisir est pour moi.");
+        if( i == 0) {
+          this.artyom.say("Merci à vous, et maintenant, allons nourir le monde de diversité.");
+        } else {
+          this.artyom.say("Tout le plaisir est pour moi.");
+        }
       }
     });
 
   }
 
   ngAfterViewInit() {
-
-    this.artyom.addCommands({
-      indexes: ["Ouvre BNP dans un nouvel onglet", "immobilier * BNP", "banque", "immobilier", "crédit", "placement"],
-      action: (i, wildcard) => {
-        this.artyom.say("Je vous donne accès, au site, n'hésiter pas à me solliciter si vous avez besoin d'une assistance.");
-        console.log('ooo');
-        window.open("https://mabanque.bnpparibas/", "_blank");
-      }
-    });
 
     this.artyom.initialize({
      lang: 'fr-FR',  // More languages are documented in the library (default: en-GB)
@@ -86,5 +116,7 @@ export class AppComponent {
      debug: false,  //Show everything in the console
      listen: true  // Start listening when this function is triggered
    });
+
+   this.artyom.say("Je file, c'est les meilleurs.");
   }
 }
