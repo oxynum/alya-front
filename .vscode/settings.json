@@ -1,0 +1,5 @@
+// Placez vos paramètres dans ce fichier pour remplacer les paramètres par défaut et les paramètres utilisateur.
+{
+    "workbench.colorTheme": "Dobri Next -A06- Amethyst",
+    "workbench.iconTheme": "material-icon-theme"
+}
